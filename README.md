@@ -531,9 +531,3 @@ streamlit run chatbot.py
 5. **Health Awareness**: Automatic warnings for excessive product quantities
 6. **Persistent State**: Conversation history and checkpointing
 7. **Streaming Responses**: Real-time token streaming for better UX
-
----
-
-## License
-
-© IIITH Capstone Project 2025
