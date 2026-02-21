@@ -1,4 +1,4 @@
-# IIITH Chatbot Architecture Documentation
+# Chatbot Architecture Documentation
 
 A retail-focused AI chatbot for product recognition, shelf analysis, and automated checkout using computer vision and LLM-powered conversational AI.
 
