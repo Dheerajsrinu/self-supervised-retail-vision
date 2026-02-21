@@ -1,0 +1,53 @@
+roboflow
+ultralytics==8.3.40
+kornia==0.8.2
+
+# Application mdls
+fastapi==0.115.0
+uvicorn==0.32.0
+python-multipart
+
+# LangChain Core
+langchain
+langchain-core
+
+# OpenAI Integration
+langchain-openai
+openai
+
+# Anthropic Integration
+langchain-anthropic
+
+# Google Gemini (PaLM) Integration
+langchain-google-genai
+google-generativeai
+
+# Hugging Face Integration
+langchain-huggingface
+transformers
+huggingface-hub
+
+# Environment Variable Management
+python-dotenv
+
+# Machine Learning Utilities
+numpy
+
+torch
+streamlit
+
+langgraph
+
+langgraph-checkpoint-postgres
+psycopg[binary,pool]
+
+# psycopg2==2.9.11
+
+passlib==1.7.4
+duckduckgo-search
+langchain-community
+tiktoken
+ddgs
+joblib
+catboost
+bcrypt

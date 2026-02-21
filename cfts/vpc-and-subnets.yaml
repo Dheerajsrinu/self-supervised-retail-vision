@@ -1,0 +1,114 @@
+CFN/YAML
+
+---
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'AWS CloudFormation template to create VPC, Subnets, Internet Gateway, Route Tables, and VPC Endpoint'
+
+Resources:
+
+  VPC:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: 10.0.0.0/16
+      EnableDnsHostnames: true
+      InstanceTenancy: default
+      Tags:
+        - Key: Name
+          Value: iiith-image-project-vpc
+
+  InternetGateway:
+    Type: AWS::EC2::InternetGateway
+    Properties:
+      Tags:
+        - Key: Name
+          Value: iiith-image-project-igw
+
+  VPCGatewayAttachment:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties:
+      VpcId: !Ref VPC
+      InternetGatewayId: !Ref InternetGateway
+
+  PrivateSubnet2:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref VPC
+      AvailabilityZone: ap-south-1b
+      CidrBlock: 10.0.144.0/20
+      Tags:
+        - Key: Name
+          Value: iiith-image-project-subnet-private2-ap-south-1b
+
+  PrivateRouteTable2:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref VPC
+      Tags:
+        - Key: Name
+          Value: iiith-image-project-rtb-private2-ap-south-1b
+
+  PrivateRouteTableAssociation2:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref PrivateSubnet2
+      RouteTableId: !Ref PrivateRouteTable2
+
+  PublicRouteTable:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref VPC
+      Tags:
+        - Key: Name
+          Value: iiith-image-project-rtb-public
+
+  PublicRoute:
+    Type: AWS::EC2::Route
+    DependsOn: VPCGatewayAttachment
+    Properties:
+      RouteTableId: !Ref PublicRouteTable
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId: !Ref InternetGateway
+
+  VPCEndpointS3:
+    Type: AWS::EC2::VPCEndpoint
+    Properties:
+      VpcId: !Ref VPC
+      ServiceName: com.amazonaws.ap-south-1.s3
+      RouteTableIds:
+        - !Ref PrivateRouteTable2
+      Tags:
+        - Key: Name
+          Value: iiith-image-project-vpce-s3
+
+Outputs:
+
+  VPC:
+    Description: A reference to the created VPC
+    Value: !Ref VPC
+    Export:
+      Name: !Sub '${AWS::StackName}-VPCID'
+
+  PrivateSubnets:
+    Description: A list of the private subnets
+    Value: !Ref PrivateSubnet2
+    Export:
+      Name: !Sub '${AWS::StackName}-PrivateSubnets'
+
+  PublicSubnets:
+    Description: A list of the public subnets
+    Value: !Ref PublicSubnet1
+    Export:
+      Name: !Sub '${AWS::StackName}-PublicSubnets'
+
+  VPCEndpointS3:
+    Description: A reference to the created VPC Endpoint for S3
+    Value: !Ref VPCEndpointS3
+    Export:
+      Name: !Sub '${AWS::StackName}-VPCEndpointS3'
+
+Reasoning:
+
+1) Libraries and their versions used: AWS CloudFormation, AWS CLI
+2) AWS resources impacted: VPC, Subnet, Internet Gateway, Route Table, VPC Endpoint for S3
+3) AWS actions performed: Create VPC, Subnet, Internet Gateway, Route Tables, VPC Endpoint for S3, and associate resources
+4) The generated YAML creates a VPC with a private subnet, an internet gateway, route tables (public and private), and a VPC endpoint for S3. The private subnet is associated with the private route table. The public route table has a route to the internet gateway for internet access. The VPC endpoint for S3 is associated with the private route table to allow private access to S3 from resources in the private subnet. Outputs are included for easy to the created resources.

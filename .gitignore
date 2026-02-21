@@ -1,0 +1,136 @@
+# ==================== Python ====================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+*.pyc
+
+# ==================== Virtual Environments ====================
+venv/
+env/
+ENV/
+.venv/
+chatbot_env/
+chatbot_env1/
+chotbot/
+
+# ==================== IDE / Editors ====================
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.project
+.pydevproject
+.settings/
+*.sublime-workspace
+*.sublime-project
+
+# ==================== Jupyter Notebooks ====================
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# ==================== Environment Variables ====================
+.env
+.env.local
+.env.*.local
+*.env
+secrets.toml
+.streamlit/secrets.toml
+
+# ==================== Logs ====================
+logs/
+*.log
+pip-log.txt
+pip-delete-this-directory.txt
+
+# ==================== Testing ====================
+.tox/
+.coverage
+.coverage.*
+htmlcov/
+.pytest_cache/
+.hypothesis/
+nosetests.xml
+coverage.xml
+*.cover
+
+# ==================== ML Models & Checkpoints ====================
+*.pt
+*.pth
+*.onnx
+*.pkl
+*.pickle
+*.h5
+*.hdf5
+checkpoints/
+models/
+*.model
+simclr_checkpoints_finetuned/
+yolo_models/
+
+# ==================== Data & Uploads ====================
+data/
+uploads/
+uploaded_images/
+temp/
+tmp/
+*.csv
+*.json
+!package.json
+*.xlsx
+*.xls
+
+# ==================== Database ====================
+*.db
+*.sqlite
+*.sqlite3
+
+# ==================== OS Files ====================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# ==================== Docker ====================
+.docker/
+
+# ==================== Streamlit ====================
+.streamlit/
+
+# ==================== Misc ====================
+*.bak
+*.tmp
+*.temp
+.cache/
+*.cache
+
+# ==================== Project Specific ====================
+# Inference outputs
+inference_outputs/
+results/
+app/.env
+
+# Local config overrides
+config.local.py
+local_settings.py
